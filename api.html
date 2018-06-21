@@ -1,0 +1,36 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div id='message'>
+      Waiting for the iframe's 'onload' event...
+    </div>
+    <div class="fb-video"
+      data-href="https://www.facebook.com/StrangersSeries/videos/112472752778134/"
+      data-width="560"
+      data-allowfullscreen="true">
+    </div>
+    <script type='text/javascript'>
+      let t1 = Date.now();
+      window.fbAsyncInit = () => {
+        FB.init({
+          // Refinery29 (Development)
+          appId      : 169015066448565,
+          status     : false,
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+
+        // Get Embedded Video Player API Instance
+        var my_video_player;
+        FB.Event.subscribe('xfbml.ready', function(msg) {
+          if (msg.type === 'video') {
+            const iframe = document.querySelector('.fb-video iframe');
+            console.log(iframe);
+          }
+        });
+      };
+    </script>
+    <script id='facebook-jssdk' src='https://connect.facebook.net/en_US/sdk.js'></script>
+  </body>
+</html>

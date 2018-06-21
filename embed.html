@@ -1,0 +1,28 @@
+<html>
+  <head></head>
+  <body>
+    <h1>
+      static iframe embed
+    </h1>
+    <div id='message'>
+     Waiting for the iframe's 'onload' event...
+    </div>
+    <div id='embed'></div>
+
+    <script type='text/javascript'>
+      var iframe = document.createElement('iframe');
+      iframe.src = "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FStrangersSeries%2Fvideos%2F112472752778134%2F&amp;show_text=0&amp;width=560"; width="560";
+      iframe.width = 560;
+      iframe.height = 315;
+      iframe.style = "border:none;overflow:hidden";
+
+      var t1;
+      iframe.onload = function() {
+        document.querySelector('#message').innerHTML =
+          'The iframe took ' + (Date.now() - t1) + ' ms to load.';
+      };
+      t1 = Date.now();
+      document.querySelector('#embed').appendChild(iframe);
+    </script>
+  </body>
+</html>
