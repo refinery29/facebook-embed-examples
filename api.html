@@ -3,6 +3,9 @@
   <head>
   </head>
   <body>
+    <h1>
+      API-driven
+    </h1>
     <div id='message'>
       Waiting for the iframe's 'onload' event...
     </div>
@@ -12,7 +15,7 @@
       data-allowfullscreen="true">
     </div>
     <script type='text/javascript'>
-      let t1 = Date.now();
+      var t1 = Date.now();
       window.fbAsyncInit = () => {
         FB.init({
           // Refinery29 (Development)
@@ -26,8 +29,24 @@
         var my_video_player;
         FB.Event.subscribe('xfbml.ready', function(msg) {
           if (msg.type === 'video') {
-            const iframe = document.querySelector('.fb-video iframe');
-            console.log(iframe);
+            var message = document.querySelector('#message');
+            var t2 = Date.now() - t1;
+            document.querySelector('#message').innerHTML = (
+              'The embed took ' + t2 + ' ms to fire the "ready" event.'
+            );
+
+            var iframe;
+            var intervalID = window.setInterval(function() {
+              iframe = document.querySelector('.fb-video iframe');
+              if (iframe.style.visibility === 'visible') {
+                t3 = Date.now() - t2;
+                message.innerHTML += (
+                  '\nAnd it took an additional ' + t3 + ' ms to become visible, '
+                  + 'for a total of ' + t2 + t3 + ' ms.'
+                );
+                window.clearInterval(intervalID);
+              }
+            }, 100);
           }
         });
       };
