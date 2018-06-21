@@ -30,19 +30,19 @@
         FB.Event.subscribe('xfbml.ready', function(msg) {
           if (msg.type === 'video') {
             var message = document.querySelector('#message');
-            var t2 = Date.now() - t1;
+            var t2 = Date.now();
             document.querySelector('#message').innerHTML = (
-              'The embed took ' + t2 + ' ms to fire the "ready" event.'
+              'The embed took ' + (t2 - t1) + ' ms to fire the "ready" event.'
             );
 
             var iframe;
             var intervalID = window.setInterval(function() {
               iframe = document.querySelector('.fb-video iframe');
               if (iframe.style.visibility === 'visible') {
-                t3 = Date.now() - t2;
+                t3 = Date.now();
                 message.innerHTML += (
-                  '\nAnd it took an additional ' + t3 + ' ms to become visible, '
-                  + 'for a total of ' + t2 + t3 + ' ms.'
+                  '<br> And it took an additional ' + (t3 - t2) + ' ms to become visible, '
+                  + 'for a total of ' + (t3 - t1) + ' ms.'
                 );
                 window.clearInterval(intervalID);
               }
