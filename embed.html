@@ -21,7 +21,7 @@
       iframe.onload = function() {
         var t2 = Date.now();
         document.querySelector('#message').innerHTML =
-          'The iframe took ' + (t2 - t1) + ' ms to load.';
+          'The iframe took ' + (t2 - t1) + ' ms to load. (It likely became visible even more quickly.)';
       };
       t1 = Date.now();
       document.querySelector('#embed').appendChild(iframe);
